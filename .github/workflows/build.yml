@@ -18,13 +18,14 @@ jobs:
           echo "::set-output name=date::$(/bin/date -u "+%Y%m%d")"
         shell: bash
 
-      - name: Install Android SDK
-        run: |
-          wget https://dl.google.com/android/repository/commandlinetools-linux-6858069_latest.zip -O android-sdk.zip
-          unzip -q android-sdk.zip -d $HOME/android-sdk
-        env:
-          ANDROID_HOME: $HOME/android-sdk
-          PATH: $PATH:$HOME/android-sdk/tools/bin
+      - - name: Install Android SDK
+  run: |
+    curl -o android-sdk.zip https://dl.google.com/android/repository/commandlinetools-linux-6858069_latest.zip
+    unzip -q android-sdk.zip -d $HOME/android-sdk
+  env:
+    ANDROID_HOME: $HOME/android-sdk
+    PATH: $PATH:$HOME/android-sdk/tools/bin
+
 
       - name: Accept Android SDK Licenses
         run: yes | $ANDROID_HOME/cmdline-tools/tools/bin/sdkmanager --licenses
