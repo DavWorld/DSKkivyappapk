@@ -29,13 +29,17 @@ jobs:
       - name: Set Up Python Environment
         uses: actions/setup-python@v2
         with:
-          python-version: 3.7
-
-      - name: Accept Android SDK Licenses
-        run: yes | sdkmanager --licenses
+          python-version: 3.11.4  # Replace with your Python version
 
       - name: Install Buildozer
         run: pip install --upgrade buildozer
 
+      - name: Accept Android SDK Licenses
+        run: yes | sdkmanager --licenses
+
       - name: Build APK
         run: buildozer android debug
+
+  artifacts:
+    paths:
+      - ./bin/*.apk
