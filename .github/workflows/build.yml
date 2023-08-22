@@ -31,11 +31,11 @@ jobs:
         with:
           python-version: 3.11.4  # Replace with your Python version
 
+      - name: Accept Android SDK Licenses
+        run: yes | sdkmanager --licenses  # This step accepts the Android SDK licenses
+
       - name: Install Buildozer
         run: pip install --upgrade buildozer
-
-      - name: Accept Android SDK Licenses
-        run: yes | sdkmanager --licenses
 
       - name: Build APK
         run: buildozer android debug
